@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<title>Latihan Menulis - Pensil</title>
+
+<style>
+body { font-family: Arial, sans-serif; background-color: #F9F5EF; text-align: center; margin: 0; padding: 30px; }
+.container { max-width: 700px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+h1 { color: #E67E22; font-size: 42px; }
+.word { font-size: 48px; font-weight: bold; color: #2C3E50; }
+.trace-area { position: relative; margin: 30px auto; width: 420px; height: 80px; }
+.trace-guide { font-size: 56px; font-weight: bold; color: transparent; -webkit-text-stroke: 2px #B0B0B0; letter-spacing: 6px; user-select: none; }
+#traceCanvas { position: absolute; top: 0; left: 0; border: 1px dashed #ccc; cursor: crosshair; }
+button { font-size: 20px; padding: 12px 24px; background-color: #E74C3C; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; }
+button:hover { background-color: #C0392B; }
+.note { margin-top: 15px; font-size: 16px; color: #555; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Latihan Menulis</h1>
+    <div class="word">PENSIL</div>
+
+    <div class="trace-area">
+        <div class="trace-guide">PENSIL</div>
+        <canvas id="traceCanvas" width="420" height="80"></canvas>
+    </div>
+
+    <button onclick="clearCanvas()">✖ Kosongkan</button>
+
+    <div class="note">
+        Tulis perkataan di atas huruf titik-titik.
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById("traceCanvas");
+const ctx = canvas.getContext("2d");
+let drawing = false;
+ctx.lineWidth = 4;
+ctx.lineCap = "round";
+ctx.strokeStyle = "#2C3E50";
+
+function getPos(e) { const rect = canvas.getBoundingClientRect(); if (e.touches) return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top }; return { x: e.offsetX, y: e.offsetY }; }
+
+canvas.addEventListener("mousedown", e => { drawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos
