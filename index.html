@@ -47,3 +47,4 @@ ctx.strokeStyle = "#2C3E50";
 function getPos(e) { const rect = canvas.getBoundingClientRect(); if (e.touches) return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top }; return { x: e.offsetX, y: e.offsetY }; }
 
 canvas.addEventListener("mousedown", e => { drawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos
+
